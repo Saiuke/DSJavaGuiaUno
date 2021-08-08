@@ -15,18 +15,10 @@ package universidadean.feriaempresarial.interfaz;
 
 import universidadean.feriaempresarial.mundo.FeriaEmpresarial;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 /**
  * Dialogo donde se muestran las opciones para ingresar una nueva empresa visitante
@@ -95,7 +87,8 @@ public class DialogoEmpresaVisitante extends JDialog implements ActionListener {
 
     /**
      * Constructor del panel
-     * @param nPrincipal Es la ventana principal de la aplicación
+     *
+     * @param nPrincipal        Es la ventana principal de la aplicación
      * @param nFeriaEmpresarial Es la feria empresarial de la aplicación
      */
     public DialogoEmpresaVisitante(InterfazFeriaEmpresarial nPrincipal, FeriaEmpresarial nFeriaEmpresarial) {
@@ -141,6 +134,7 @@ public class DialogoEmpresaVisitante extends JDialog implements ActionListener {
 
     /**
      * Manejo de los eventos de los botones
+     *
      * @param e Acción que generó el evento
      */
     public void actionPerformed(ActionEvent e) {
@@ -151,24 +145,20 @@ public class DialogoEmpresaVisitante extends JDialog implements ActionListener {
             if (nombre != null && !nombre.equals("")) {
                 try {
                     numPersonas = Integer.parseInt(txtNumeroVisitantes.getText());
-                }
-                catch (NumberFormatException e1) {
+                } catch (NumberFormatException e1) {
                     JOptionPane.showMessageDialog(this, "Formato incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 try {
                     feriaEmpresarial.ingresarEmpresaVisitante(nombre, numPersonas);
                     dispose();
-                }
-                catch (Exception eFeria) {
+                } catch (Exception eFeria) {
                     JOptionPane.showMessageDialog(this, eFeria.getMessage());
                 }
-            }
-            else {
+            } else {
                 JOptionPane.showMessageDialog(this, "Debe ingresar el nombre de la empresa", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        }
-        else if (comando.equals(CANCELAR)) {
+        } else if (comando.equals(CANCELAR)) {
             dispose();
         }
     }

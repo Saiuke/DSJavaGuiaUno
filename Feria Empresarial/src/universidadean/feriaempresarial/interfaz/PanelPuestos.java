@@ -11,6 +11,8 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * <p>
  * Panel que representa la feria con sus puestos
+ * <p>
+ * Panel que representa la feria con sus puestos
  */
 
 /**
@@ -21,18 +23,10 @@ package universidadean.feriaempresarial.interfaz;
 import universidadean.feriaempresarial.mundo.FeriaEmpresarial;
 import universidadean.feriaempresarial.mundo.Puesto;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import java.awt.*;
 
 /**
  * Panel que representa un puesto
@@ -197,8 +191,7 @@ public class PanelPuestos extends JPanel {
             if (i >= numPuestoZona / 2) {
                 gbc.gridy = 1;
                 gbc.gridx = i - numPuestoZona / 2;
-            }
-            else {
+            } else {
                 gbc.gridx = i;
             }
 

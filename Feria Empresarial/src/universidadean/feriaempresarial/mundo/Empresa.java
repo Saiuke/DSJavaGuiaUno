@@ -57,8 +57,9 @@ public class Empresa {
     /**
      * Constructor de la empresa con parámetros<br>
      * <b>post: </b>Se creó un objeto empresa con los valores ingresados por parámetro<br>
-     * @param nNombre Nombre de la empresa. nNombre != null, nNombre != ""
-     * @param nTipo Tipo de la empresa. Debe pertenecer a uno de los valores de las constantes de la clase
+     *
+     * @param nNombre                   Nombre de la empresa. nNombre != null, nNombre != ""
+     * @param nTipo                     Tipo de la empresa. Debe pertenecer a uno de los valores de las constantes de la clase
      * @param nNumeroPersonasAsistentes Número de personas de la empresa
      */
     public Empresa(String nNombre, String nTipo, int nNumeroPersonasAsistentes) {
@@ -74,6 +75,7 @@ public class Empresa {
     /**
      * Retorna el nombre de la empresa<br>
      * <b>post: </b>Se retornó el nombre de la empresa. Nombre != null, Nombre != ""<br>
+     *
      * @return Nombre de la empresa
      */
     public String darNombre() {
@@ -83,6 +85,7 @@ public class Empresa {
     /**
      * Retorna el tipo de la empresa<br>
      * <b>post: </b>Se retornó el tipo de la empresa. tipo != null, tipo != ""<br>
+     *
      * @return Tipo de la empresa
      */
     public String darTipo() {
@@ -92,6 +95,7 @@ public class Empresa {
     /**
      * Retorna el número de personas de la empresa<br>
      * <b>post: </b>Se retornó el número de personas de la empresa. Número mayor a cero<br>
+     *
      * @return Número de personas de la empresa
      */
     public int darNumeroPersonasAsistentes() {

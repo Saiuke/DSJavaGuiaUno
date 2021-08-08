@@ -16,20 +16,10 @@ package universidadean.feriaempresarial.interfaz;
 import universidadean.feriaempresarial.mundo.FeriaEmpresarial;
 import universidadean.feriaempresarial.mundo.Puesto;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 /**
  * Dialogo donde se muestran las opciones para ingresar una nueva empresa expositora
@@ -115,7 +105,8 @@ public class DialogoEmpresaExpositora extends JDialog implements ActionListener 
 
     /**
      * Constructor del dialogo
-     * @param nPrincipal Es la ventana principal de la aplicación
+     *
+     * @param nPrincipal        Es la ventana principal de la aplicación
      * @param nFeriaEmpresarial Es la feria empresarial de la aplicación
      */
     public DialogoEmpresaExpositora(InterfazFeriaEmpresarial nPrincipal, FeriaEmpresarial nFeriaEmpresarial) {
@@ -222,20 +213,16 @@ public class DialogoEmpresaExpositora extends JDialog implements ActionListener 
         if (ubicacion.equals(Puesto.ZONA_NORTE)) {
             inicio = 0;
             cantidad = FeriaEmpresarial.NUM_PUESTOS_NORTE;
-        }
-        else if (ubicacion.equals(Puesto.ZONA_ORIENTE)) {
+        } else if (ubicacion.equals(Puesto.ZONA_ORIENTE)) {
             inicio = FeriaEmpresarial.NUM_PUESTOS_NORTE;
             cantidad = FeriaEmpresarial.NUM_PUESTOS_ORIENTE;
-        }
-        else if (ubicacion.equals(Puesto.ZONA_SUR)) {
+        } else if (ubicacion.equals(Puesto.ZONA_SUR)) {
             inicio = FeriaEmpresarial.NUM_PUESTOS_NORTE + FeriaEmpresarial.NUM_PUESTOS_ORIENTE;
             cantidad = FeriaEmpresarial.NUM_PUESTOS_SUR;
-        }
-        else if (ubicacion.equals(Puesto.ZONA_OCCIDENTE)) {
+        } else if (ubicacion.equals(Puesto.ZONA_OCCIDENTE)) {
             inicio = FeriaEmpresarial.NUM_PUESTOS_NORTE + FeriaEmpresarial.NUM_PUESTOS_ORIENTE + FeriaEmpresarial.NUM_PUESTOS_SUR;
             cantidad = FeriaEmpresarial.NUM_PUESTOS_OCCIDENTE;
-        }
-        else {
+        } else {
             inicio = FeriaEmpresarial.NUM_PUESTOS_NORTE + FeriaEmpresarial.NUM_PUESTOS_ORIENTE + FeriaEmpresarial.NUM_PUESTOS_SUR + FeriaEmpresarial.NUM_PUESTOS_OCCIDENTE;
             cantidad = FeriaEmpresarial.NUM_PUESTOS_CENTRO;
         }
@@ -249,6 +236,7 @@ public class DialogoEmpresaExpositora extends JDialog implements ActionListener 
 
     /**
      * Manejo de los eventos de los botones
+     *
      * @param e Acción que generó el evento.
      */
     public void actionPerformed(ActionEvent e) {
@@ -260,15 +248,13 @@ public class DialogoEmpresaExpositora extends JDialog implements ActionListener 
             if (nombre != null && !nombre.equals("")) {
                 try {
                     numPersonas = Integer.parseInt(txtNumeroExpositores.getText());
-                }
-                catch (NumberFormatException e1) {
+                } catch (NumberFormatException e1) {
                     JOptionPane.showMessageDialog(this, "Formato incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 try {
                     numeroPuesto = Integer.parseInt((String) cboNumeroPuesto.getSelectedItem());
-                }
-                catch (Exception eNumero) {
+                } catch (Exception eNumero) {
                     JOptionPane.showMessageDialog(this, "Debe seleccionar un puesto válido", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
@@ -276,20 +262,16 @@ public class DialogoEmpresaExpositora extends JDialog implements ActionListener 
                     String zonaPuesto = (String) cboUbicacion.getSelectedItem();
                     feriaEmpresarial.ingresarEmpresaExpositora(nombre, numPersonas, zonaPuesto, numeroPuesto);
                     dispose();
-                }
-                catch (Exception eFeria) {
+                } catch (Exception eFeria) {
                     JOptionPane.showMessageDialog(this, eFeria.getMessage());
                 }
-            }
-            else {
+            } else {
                 JOptionPane.showMessageDialog(this, "Debe ingresar el nombre de la empresa", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
-        }
-        else if (comando.equals(CANCELAR)) {
+        } else if (comando.equals(CANCELAR)) {
             dispose();
-        }
-        else if (comando.equals(CAMBIO_UBICACION)) {
+        } else if (comando.equals(CAMBIO_UBICACION)) {
             recargarPuestos();
         }
     }

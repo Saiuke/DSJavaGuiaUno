@@ -94,6 +94,17 @@ public class InterfazFeriaEmpresarial extends JFrame {
     // -----------------------------------------------------------------
 
     /**
+     * Este método ejecuta la aplicación, creando una nueva interfaz
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+
+        InterfazFeriaEmpresarial interfaz = new InterfazFeriaEmpresarial();
+        interfaz.setVisible(true);
+    }
+
+    /**
      * Hace el manejo para el ingreso de una nueva empresa visitante
      */
     public void ingresarNuevaEmpresaVisitante() {
@@ -113,13 +124,13 @@ public class InterfazFeriaEmpresarial extends JFrame {
 
     /**
      * Desocupa un puesto
+     *
      * @param nNombreEmpresa Nombre de la empresa que ocupa el puesto
      */
     public void desocuparPuesto(String nNombreEmpresa) {
         try {
             feriaEmpresarial.desocuparPuesto(nNombreEmpresa);
-        }
-        catch (Exception eFeria) {
+        } catch (Exception eFeria) {
             JOptionPane.showMessageDialog(this, eFeria.getMessage());
         }
         actualizar();
@@ -134,20 +145,17 @@ public class InterfazFeriaEmpresarial extends JFrame {
         if (sNumero != null && sNumero != "") {
             try {
                 numeroExpositores = Integer.parseInt(sNumero);
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Formato incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
             }
             try {
                 Puesto sugerido = feriaEmpresarial.sugerirPuesto(numeroExpositores);
                 if (sugerido == null) {
                     JOptionPane.showMessageDialog(this, "No hay puestos disponibles para " + numeroExpositores + " expositores");
-                }
-                else {
+                } else {
                     JOptionPane.showMessageDialog(this, "El puesto sugerido es: \n " + sugerido.darZona() + ", número: " + (sugerido.darNumero()));
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
         }
@@ -171,8 +179,13 @@ public class InterfazFeriaEmpresarial extends JFrame {
 
     }
 
+    // -----------------------------------------------------------------
+    // Puntos de Extensión
+    // -----------------------------------------------------------------
+
     /**
      * Formatea un valor numérico real para presentar en la interfaz <br>
+     *
      * @param valor El valor numérico a ser formateado
      * @return Cadena con el valor formateado con puntos y signos.
      */
@@ -183,10 +196,6 @@ public class InterfazFeriaEmpresarial extends JFrame {
         return df.format(valor);
     }
 
-    // -----------------------------------------------------------------
-    // Puntos de Extensión
-    // -----------------------------------------------------------------
-
     /**
      * Método para la extensión 1
      */
@@ -195,26 +204,16 @@ public class InterfazFeriaEmpresarial extends JFrame {
         JOptionPane.showMessageDialog(this, resultado, "Respuesta", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    // -----------------------------------------------------------------
+    // Main
+    // -----------------------------------------------------------------
+
     /**
      * Método para la extensión 2
      */
     public void reqFuncOpcion2() {
         String resultado = feriaEmpresarial.metodo2();
         JOptionPane.showMessageDialog(this, resultado, "Respuesta", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    // -----------------------------------------------------------------
-    // Main
-    // -----------------------------------------------------------------
-
-    /**
-     * Este método ejecuta la aplicación, creando una nueva interfaz
-     * @param args
-     */
-    public static void main(String[] args) {
-
-        InterfazFeriaEmpresarial interfaz = new InterfazFeriaEmpresarial();
-        interfaz.setVisible(true);
     }
 
 }

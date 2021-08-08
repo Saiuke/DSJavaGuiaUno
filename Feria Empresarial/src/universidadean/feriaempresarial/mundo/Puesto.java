@@ -102,8 +102,9 @@ public class Puesto {
      * Constructor del puesto con parámetros. Inicializa los atributos de la clase con los parámetros ingresados<br>
      * <b>post:</b> Inicializa el atributo estado la constante de la clase que indica que esta disponible<br>
      * Inicializa el nombre de el empresa vacío(nombreEmpresa = "")<br>
-     * @param nNumero Es el número del puesto. nNumero > 0
-     * @param nZona Es la zona de ubicación del puesto. nUbicacion != null, nUbicacion != ""
+     *
+     * @param nNumero            Es el número del puesto. nNumero > 0
+     * @param nZona              Es la zona de ubicación del puesto. nUbicacion != null, nUbicacion != ""
      * @param nNumMinimoPersonas Es el número mínimo de personas en el puesto. nNumMinimoPersonas > 0
      * @param nNumMaximoPersonas Es el número máximo de personas en el puesto. nNumMaximoPersonas > 0
      */
@@ -125,6 +126,7 @@ public class Puesto {
     /**
      * Retorna el nombre de la empresa que ocupa el puesto<br>
      * <b>post: </b> Se ha retornado el número del puesto. Número mayor a cero <br>
+     *
      * @return Número del puesto
      */
     public int darNumero() {
@@ -134,6 +136,7 @@ public class Puesto {
     /**
      * Retorna la zona del puesto<br>
      * <b>post: </b> Se ha retornado la zona del puesto. zona != null, zona != "" <br>
+     *
      * @return Zona del puesto
      */
     public String darZona() {
@@ -142,15 +145,17 @@ public class Puesto {
 
     /**
      * Retorna la cantidad de personas que ocupan el puesto
+     *
      * @return numOcupantes
      */
-    public int darNumOcupantes(){
+    public int darNumOcupantes() {
         return numOcupantes;
     }
 
     /**
      * Retorna el número mínimo de personas en el puesto<br>
      * <b>post: </b> Se retornó el número mínimo de personas en el puesto. Número mayor a cero <br>
+     *
      * @return Número mínimo de personas en el puesto
      */
     public int darNumMinimoPersonas() {
@@ -160,6 +165,7 @@ public class Puesto {
     /**
      * Retorna el número máximo de personas en el puesto<br>
      * <b>post: </b> Se retornó el número máximo de personas en el puesto. Número mayor a cero <br>
+     *
      * @return Número máximo de personas en el puesto
      */
     public int darNumMaximoPersonas() {
@@ -171,6 +177,7 @@ public class Puesto {
      * <b>pre: </b> El puesto esta ocupado <br>
      * <b>post: </b> Retorna el nombre de la empresa que ocupa el puesto <br>
      * nombreEmpresa != null, nombreEmpresa != ""<br>
+     *
      * @return El nombre de la empresa que ocupa el puesto
      */
     public String darNombreEmpresa() {
@@ -180,6 +187,7 @@ public class Puesto {
     /**
      * Retorna si el puestos esta ocupado o no<br>
      * <b>post: </b> Se retornó si el puesto esta ocupado o no<br>
+     *
      * @return true si esta ocupado, false de lo contrario
      */
     public boolean estaOcupado() {
@@ -196,6 +204,7 @@ public class Puesto {
      * <b>pre: </b> El estado del puesto es disponible <br>
      * <b>post: </b> El puesto cambió su estado a ocupado <br>
      * El nombre de la empresa ha sido inicializado con el nombre ingresado por parámetro<br>
+     *
      * @param nNombreEmpresa Nombre de la empresa que ocupará el puesto
      */
     public void ocuparPuesto(String nNombreEmpresa, int nNumeroPersonasExpositoras) {

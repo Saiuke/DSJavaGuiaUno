@@ -11,6 +11,8 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * <p>
  * Panel donde se listan las empresas de la feria
+ * <p>
+ * Panel donde se listan las empresas de la feria
  */
 
 /**
@@ -18,23 +20,16 @@
  */
 package universidadean.feriaempresarial.interfaz;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
+import universidadean.feriaempresarial.mundo.Empresa;
+import universidadean.feriaempresarial.mundo.FeriaEmpresarial;
+
+import javax.swing.*;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
-
-import universidadean.feriaempresarial.mundo.Empresa;
-import universidadean.feriaempresarial.mundo.FeriaEmpresarial;
 
 /**
  * Panel que muestra la información de las empresas
@@ -228,16 +223,13 @@ public class PanelEmpresas extends JPanel implements ActionListener {
         String evento = e.getActionCommand();
         if (evento.equals(NUEVA_EMPRESA_EXPOSITORA)) {
             principal.ingresarNuevaEmpresaExpositora();
-        }
-        else if (evento.equals(NUEVA_EMPRESA_VISITANTE)) {
+        } else if (evento.equals(NUEVA_EMPRESA_VISITANTE)) {
             principal.ingresarNuevaEmpresaVisitante();
-        }
-        else if (evento.equals(DESOCUPAR_PUESTO)) {
+        } else if (evento.equals(DESOCUPAR_PUESTO)) {
             try {
                 String nNombreEmpresa = (String) modelExpositores.getValueAt(tablaEmpresasExpositoras.getSelectedRow(), 0);
                 principal.desocuparPuesto(nNombreEmpresa);
-            }
-            catch (ArrayIndexOutOfBoundsException e2) {
+            } catch (ArrayIndexOutOfBoundsException e2) {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar una empresa expositora", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }

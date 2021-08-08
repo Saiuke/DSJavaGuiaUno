@@ -13,13 +13,11 @@
 
 package universidadean.feriaempresarial.interfaz;
 
-import java.awt.GridLayout;
+import javax.swing.*;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
 
 /**
  * Panel de manejo de extensiones
@@ -89,6 +87,7 @@ public class PanelExtension extends JPanel implements ActionListener {
 
     /**
      * Constructor del panel
+     *
      * @param ventana Ventana principal
      */
     public PanelExtension(InterfazFeriaEmpresarial ventana) {
@@ -126,19 +125,17 @@ public class PanelExtension extends JPanel implements ActionListener {
 
     /**
      * Manejo de los eventos de los botones
+     *
      * @param e Acción que generó el evento.
      */
     public void actionPerformed(ActionEvent e) {
         if (OPCION_1.equals(e.getActionCommand())) {
             principal.reqFuncOpcion1();
-        }
-        else if (OPCION_2.equals(e.getActionCommand())) {
+        } else if (OPCION_2.equals(e.getActionCommand())) {
             principal.reqFuncOpcion2();
-        }
-        else if (BUSCAR_PUESTO.equals(e.getActionCommand())) {
+        } else if (BUSCAR_PUESTO.equals(e.getActionCommand())) {
             principal.sugerirPuesto();
-        }
-        else if (PORCENTAJE_OCUPACION.equals(e.getActionCommand())) {
+        } else if (PORCENTAJE_OCUPACION.equals(e.getActionCommand())) {
             principal.darPorcentajeOcupacion();
         }
     }
