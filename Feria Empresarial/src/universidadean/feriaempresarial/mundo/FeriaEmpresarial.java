@@ -448,8 +448,8 @@ public class FeriaEmpresarial {
     // -----------------------------------------------------------------
 
     /**
-     * Método para la extensión 1
-     * @return respuesta1
+     * Retorna el nombre y la cantidad de personas de la zona con el mayor número de ocupantes de la feria
+     * @return String
      */
     public String metodo1() {
         HashMap<String, Integer> listaZonas = new HashMap<String, Integer>();
@@ -475,11 +475,46 @@ public class FeriaEmpresarial {
     }
 
     /**
-     * Método para la extensión2
+     * Retorna la cantidad total de ocupantes de la feria
+     * @return
+     */
+    public Integer darNumTotalOcupantes(){
+        int numTotalOcupantes = 0;
+        for (int i = 0; i < puestos.length; i++) {
+            Puesto puesto = puestos[i];
+            if (puesto.estaOcupado()) {
+                numTotalOcupantes += puesto.darNumOcupantes();
+            }
+        }
+        return numTotalOcupantes;
+    }
+
+    /**
+     * Retorna la capacidad máxima de ocupantes de la feria
+     * @return
+     */
+    public int darCapacidadTotal(){
+        int capacidadTotal = MAX_PERSONAS_CENTRO * NUM_PUESTOS_CENTRO
+                            + MAX_PERSONAS_NORTE * NUM_PUESTOS_NORTE
+                            + MAX_PERSONAS_ORIENTE * NUM_PUESTOS_ORIENTE
+                            + MAX_PERSONAS_SUR * NUM_PUESTOS_SUR
+                            + MAX_PERSONAS_OCCIDENTE * NUM_PUESTOS_OCCIDENTE;
+        return capacidadTotal;
+    }
+
+    /**
+     * Retorna si la feria posee la ocupación mayor o igual a 60% de su capacidad total
      * @return respuesta2
      */
     public String metodo2() {
-        return "Respuesta 2";
+        int numTotalOcupantes = darNumTotalOcupantes();
+        int capacidadTotal = darCapacidadTotal();
+        var puntoEquilibrio = 0.6;
+        String estadoActualFeria = "El punto de equilibrio no se ha cumplido.\n La ocupación actual es de " + numTotalOcupantes + " personas.\n";
+        if (!(numTotalOcupantes >= puntoEquilibrio * capacidadTotal)) {
+            return estadoActualFeria;
+        }
+        estadoActualFeria = "El punto de equilibrio se ha cumplido.\n La ocupación actual es de " + numTotalOcupantes + " personas.\n";
+        return estadoActualFeria;
     }
-
 }
