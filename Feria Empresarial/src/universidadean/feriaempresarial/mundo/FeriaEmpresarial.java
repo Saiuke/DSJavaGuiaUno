@@ -459,7 +459,6 @@ public class FeriaEmpresarial {
             Puesto puesto = puestos[i];
             if (puesto.estaOcupado()) {
                 String zonaDelPuesto = puesto.darZona();
-                System.out.println(puesto.darZona());
                 Integer cantidadPersonasZona = (listaZonas.get(zonaDelPuesto) == null) ? 0 : listaZonas.get(zonaDelPuesto);
                 listaZonas.put(zonaDelPuesto, puesto.darNumOcupantes() + cantidadPersonasZona);
             }
