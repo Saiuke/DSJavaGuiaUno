@@ -123,8 +123,7 @@ public class Parqueadero {
         String respuesta = "";
         if (estaOcupado(pPosicion)) {
             respuesta = "Placa: " + puestos[pPosicion].darCarro().darPlaca();
-        }
-        else {
+        } else {
             respuesta = "No hay un carro en esta posición";
         }
 
@@ -145,8 +144,7 @@ public class Parqueadero {
         int resultado = 0;
         if (!abierto) {
             resultado = PARQUEADERO_CERRADO;
-        }
-        else {
+        } else {
             // Buscar en el parqueadero un carro con la placa indicada
             int numPuestoCarro = buscarPuestoCarro(pPlaca.toUpperCase());
             if (numPuestoCarro != CARRO_NO_EXISTE) {
@@ -177,13 +175,11 @@ public class Parqueadero {
         int resultado = 0;
         if (!abierto) {
             resultado = PARQUEADERO_CERRADO;
-        }
-        else {
+        } else {
             int numPuesto = buscarPuestoCarro(pPlaca.toUpperCase());
             if (numPuesto == CARRO_NO_EXISTE) {
                 resultado = CARRO_NO_EXISTE;
-            }
-            else {
+            } else {
                 Carro carro = puestos[numPuesto].darCarro();
                 int nHoras = carro.darTiempoEnParqueadero(horaActual);
                 int porPagar = nHoras * tarifa;

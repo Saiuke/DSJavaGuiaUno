@@ -105,11 +105,9 @@ public class Puesto {
 
         if (carro == null) {
             tieneCarro = false;
-        }
-        else if (carro.tienePlaca(pPlaca)) {
+        } else if (carro.tienePlaca(pPlaca)) {
             tieneCarro = true;
-        }
-        else {
+        } else {
             tieneCarro = false;
         }
 

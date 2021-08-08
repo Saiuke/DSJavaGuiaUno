@@ -34,8 +34,9 @@ public class Carro {
 
     /**
      * Crea un carro con la información básica.
+     *
      * @param pPlaca Placa del carro. pPlaca != null.
-     * @param pHora Hora de ingreso.
+     * @param pHora  Hora de ingreso.
      */
     public Carro(String pPlaca, int pHora) {
         placa = pPlaca;
@@ -48,6 +49,7 @@ public class Carro {
 
     /**
      * Retorna la placa del carro.
+     *
      * @return La placa del carro.
      */
     public String darPlaca() {
@@ -56,6 +58,7 @@ public class Carro {
 
     /**
      * Retorna la hora de llegada del carro.
+     *
      * @return La hora en la que llegó el carro al parqueadero.
      */
     public int darHoraLlegada() {
@@ -64,6 +67,7 @@ public class Carro {
 
     /**
      * Indica si la placa del carro es igual a la recibida por parámetro.
+     *
      * @param pPlaca Placa contra la que se está comparando. pPlaca != null.
      * @return Retorna true si las placas son iguales, false en caso contrario.
      */
@@ -71,8 +75,7 @@ public class Carro {
         boolean tienePlaca = false;
         if (placa.equalsIgnoreCase(pPlaca)) {
             tienePlaca = true;
-        }
-        else {
+        } else {
             tienePlaca = false;
         }
         return tienePlaca;
@@ -80,6 +83,7 @@ public class Carro {
 
     /**
      * Calcula el número de horas que debe pagar el carro según el tiempo que lleva el auto en el parqueadero.
+     *
      * @param pHoraSalida Hora a la que el carro sale del parqueadero. pHoraSalida >= horaLlegada.
      * @return Tiempo que ha estado en parqueadero.
      */
