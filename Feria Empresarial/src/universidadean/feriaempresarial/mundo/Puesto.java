@@ -89,6 +89,11 @@ public class Puesto {
      */
     private int numMaximoPersonas;
 
+    /**
+     * Número máximo de personas en el puesto
+     */
+    private int numOcupantes;
+
     // -----------------------------------------------------------------
     // Constructores
     // -----------------------------------------------------------------
@@ -102,8 +107,9 @@ public class Puesto {
      * @param nNumMinimoPersonas Es el número mínimo de personas en el puesto. nNumMinimoPersonas > 0
      * @param nNumMaximoPersonas Es el número máximo de personas en el puesto. nNumMaximoPersonas > 0
      */
-    public Puesto(int nNumero, String nZona, int nNumMinimoPersonas, int nNumMaximoPersonas) {
+    public Puesto(int nNumero, String nZona, int nNumMinimoPersonas, int nNumMaximoPersonas, int nNumOcupantes) {
         numero = nNumero;
+        numOcupantes = nNumOcupantes;
         zona = nZona;
         numMinimoPersonas = nNumMinimoPersonas;
         numMaximoPersonas = nNumMaximoPersonas;
@@ -132,6 +138,14 @@ public class Puesto {
      */
     public String darZona() {
         return zona;
+    }
+
+    /**
+     * Retorna la cantidad de personas que ocupan el puesto
+     * @return numOcupantes
+     */
+    public int darNumOcupantes(){
+        return numOcupantes;
     }
 
     /**
@@ -184,9 +198,10 @@ public class Puesto {
      * El nombre de la empresa ha sido inicializado con el nombre ingresado por parámetro<br>
      * @param nNombreEmpresa Nombre de la empresa que ocupará el puesto
      */
-    public void ocuparPuesto(String nNombreEmpresa) {
+    public void ocuparPuesto(String nNombreEmpresa, int nNumeroPersonasExpositoras) {
         estado = ESTADO_OCUPADO;
         nombreEmpresa = nNombreEmpresa;
+        numOcupantes = nNumeroPersonasExpositoras;
     }
 
     /**
@@ -198,6 +213,6 @@ public class Puesto {
     public void desocuparPuesto() {
         estado = ESTADO_DISPONIBLE;
         nombreEmpresa = "";
+        numOcupantes = 0;
     }
-
 }

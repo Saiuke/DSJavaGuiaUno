@@ -14,6 +14,8 @@
 package universidadean.feriaempresarial.mundo;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 /**
  * Clase que modela una feria empresarial
@@ -154,6 +156,8 @@ public class FeriaEmpresarial {
         return puestos;
     }
 
+
+
     /**
      * Ingresa una empresa visitante a la feria<br>
      * <b>pre: </b>La lista de empresas y los puestos han sido inicializados<br>
@@ -230,7 +234,7 @@ public class FeriaEmpresarial {
                 throw new Exception("El puesto ya está ocupado");
             }
 
-            puestos[posicion].ocuparPuesto(nNombreEmpresa);
+            puestos[posicion].ocuparPuesto(nNombreEmpresa, nNumeroPersonasExpositoras);
         }
         else if (zonaPuesto.equals(Puesto.ZONA_ORIENTE)) {
             if (nNumeroPersonasExpositoras < MIN_PERSONAS_ORIENTE || nNumeroPersonasExpositoras > MAX_PERSONAS_ORIENTE) {
@@ -246,7 +250,7 @@ public class FeriaEmpresarial {
                 throw new Exception("El puesto ya esta ocupado");
             }
 
-            puestos[posicion].ocuparPuesto(nNombreEmpresa);
+            puestos[posicion].ocuparPuesto(nNombreEmpresa, nNumeroPersonasExpositoras);
         }
         else if (zonaPuesto.equals(Puesto.ZONA_SUR)) {
             if (nNumeroPersonasExpositoras < MIN_PERSONAS_SUR || nNumeroPersonasExpositoras > MAX_PERSONAS_SUR) {
@@ -262,7 +266,7 @@ public class FeriaEmpresarial {
                 throw new Exception("El puesto ya esta ocupado");
             }
 
-            puestos[posicion].ocuparPuesto(nNombreEmpresa);
+            puestos[posicion].ocuparPuesto(nNombreEmpresa, nNumeroPersonasExpositoras);
         }
         else if (zonaPuesto.equals(Puesto.ZONA_OCCIDENTE)) {
             if (nNumeroPersonasExpositoras < MIN_PERSONAS_OCCIDENTE || nNumeroPersonasExpositoras > MAX_PERSONAS_OCCIDENTE) {
@@ -278,7 +282,7 @@ public class FeriaEmpresarial {
                 throw new Exception("El puesto ya esta ocupado");
             }
 
-            puestos[posicion].ocuparPuesto(nNombreEmpresa);
+            puestos[posicion].ocuparPuesto(nNombreEmpresa, nNumeroPersonasExpositoras);
         }
         else if (zonaPuesto.equals(Puesto.ZONA_CENTRO)) {
             if (nNumeroPersonasExpositoras < MIN_PERSONAS_CENTRO || nNumeroPersonasExpositoras > MAX_PERSONAS_CENTRO) {
@@ -294,7 +298,7 @@ public class FeriaEmpresarial {
                 throw new Exception("El puesto ya esta ocupado");
             }
 
-            puestos[posicion].ocuparPuesto(nNombreEmpresa);
+            puestos[posicion].ocuparPuesto(nNombreEmpresa, nNumeroPersonasExpositoras);
 
         }
         else {
@@ -406,35 +410,35 @@ public class FeriaEmpresarial {
         int numPuesto = 1;
         String zona = Puesto.ZONA_NORTE;
         for (int i = 0; i < NUM_PUESTOS_NORTE; i++) {
-            puestos[i] = new Puesto(numPuesto, zona, MIN_PERSONAS_NORTE, MAX_PERSONAS_NORTE);
+            puestos[i] = new Puesto(numPuesto, zona, MIN_PERSONAS_NORTE, MAX_PERSONAS_NORTE, 0);
             numPuesto++;
         }
 
         numPuesto = 1;
         zona = Puesto.ZONA_ORIENTE;
         for (int i = 0; i < NUM_PUESTOS_ORIENTE; i++) {
-            puestos[i + NUM_PUESTOS_NORTE] = new Puesto(numPuesto, zona, MIN_PERSONAS_ORIENTE, MAX_PERSONAS_ORIENTE);
+            puestos[i + NUM_PUESTOS_NORTE] = new Puesto(numPuesto, zona, MIN_PERSONAS_ORIENTE, MAX_PERSONAS_ORIENTE, 0);
             numPuesto++;
         }
 
         numPuesto = 1;
         zona = Puesto.ZONA_SUR;
         for (int i = 0; i < NUM_PUESTOS_SUR; i++) {
-            puestos[i + NUM_PUESTOS_NORTE + NUM_PUESTOS_ORIENTE] = new Puesto(numPuesto, zona, MIN_PERSONAS_SUR, MAX_PERSONAS_SUR);
+            puestos[i + NUM_PUESTOS_NORTE + NUM_PUESTOS_ORIENTE] = new Puesto(numPuesto, zona, MIN_PERSONAS_SUR, MAX_PERSONAS_SUR, 0);
             numPuesto++;
         }
 
         numPuesto = 1;
         zona = Puesto.ZONA_OCCIDENTE;
         for (int i = 0; i < NUM_PUESTOS_OCCIDENTE; i++) {
-            puestos[i + NUM_PUESTOS_NORTE + NUM_PUESTOS_ORIENTE + NUM_PUESTOS_SUR] = new Puesto(numPuesto, zona, MIN_PERSONAS_OCCIDENTE, MAX_PERSONAS_OCCIDENTE);
+            puestos[i + NUM_PUESTOS_NORTE + NUM_PUESTOS_ORIENTE + NUM_PUESTOS_SUR] = new Puesto(numPuesto, zona, MIN_PERSONAS_OCCIDENTE, MAX_PERSONAS_OCCIDENTE, 0);
             numPuesto++;
         }
 
         numPuesto = 1;
         zona = Puesto.ZONA_CENTRO;
         for (int i = 0; i < NUM_PUESTOS_CENTRO; i++) {
-            puestos[i + NUM_PUESTOS_NORTE + NUM_PUESTOS_ORIENTE + NUM_PUESTOS_SUR + NUM_PUESTOS_OCCIDENTE] = new Puesto(numPuesto, zona, MIN_PERSONAS_CENTRO, MAX_PERSONAS_CENTRO);
+            puestos[i + NUM_PUESTOS_NORTE + NUM_PUESTOS_ORIENTE + NUM_PUESTOS_SUR + NUM_PUESTOS_OCCIDENTE] = new Puesto(numPuesto, zona, MIN_PERSONAS_CENTRO, MAX_PERSONAS_CENTRO, 0);
             numPuesto++;
         }
     }
@@ -448,7 +452,26 @@ public class FeriaEmpresarial {
      * @return respuesta1
      */
     public String metodo1() {
-        return "Respuesta 1";
+        HashMap<String, Integer> listaZonas = new HashMap<String, Integer>();
+        for (int i = 0; i < puestos.length; i++) {
+            Puesto puesto = puestos[i];
+            if (puesto.estaOcupado()) {
+                String zonaDelPuesto = puesto.darZona();
+                System.out.println(puesto.darZona());
+                Integer cantidadPersonasZona = (listaZonas.get(zonaDelPuesto) == null) ? 0 : listaZonas.get(zonaDelPuesto);
+                listaZonas.put(zonaDelPuesto, puesto.darNumOcupantes() + cantidadPersonasZona);
+            }
+        }
+        if (!listaZonas.isEmpty()) {
+            int maxValueInZone = (Collections.max(listaZonas.values()));
+            for (String i : listaZonas.keySet()) {
+                int personasEnEstaZona = listaZonas.get(i);
+                if (personasEnEstaZona == maxValueInZone) {
+                    return "La zona con más ocupantes es la " + i +" con un total de " + maxValueInZone + " personas.";
+                }
+            }
+        }
+        return "La ocupación de la feria es de 0 personas.";
     }
 
     /**
