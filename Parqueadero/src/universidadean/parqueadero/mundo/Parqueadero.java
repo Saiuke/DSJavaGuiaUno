@@ -51,7 +51,7 @@ public class Parqueadero {
     /**
      * Es la hora a la que se cierra el parqueadero.
      */
-    public static final int HORA_CIERRE = 20;
+    public static final int HORA_CIERRE = 21;
 
     /**
      * Es la tarifa inicial del parqueadero.
@@ -262,7 +262,15 @@ public class Parqueadero {
      * Si la hora actual es igual a la hora de cierre, el parqueadero se cierra.
      */
     public void avanzarHora() {
-        horaActual++;
+        if (horaActual != 23) {
+            if (horaActual == HORA_INICIAL - 1 ) {
+                abierto = true;
+            }
+            horaActual++;
+        } else {
+            horaActual = 0;
+        }
+        if (horaActual == HORA_CIERRE - 1) abierto = false;
     }
 
     /**
@@ -304,25 +312,41 @@ public class Parqueadero {
     }
 
     // -----------------------------------------------------------------
-    // Puntos de Extensi?n
+    // Puntos de Extensión
     // -----------------------------------------------------------------
 
     /**
-     * Método de extensión 1.
+     * Informa la placa y tiempo que lleva el carro que está parqueado hace más tiempo.
      *
-     * @return Respuesta 1.
+     * @return
      */
     public String metodo1() {
-        return "respuesta 1";
+        String placaCarro = "";
+        Integer maxHoras = 0;
+        for (int i = 0; i < TAMANO; i++) {
+            if (puestos[i].estaOcupado()) {
+                Carro carroActual = puestos[i].darCarro();
+                int nHoras = carroActual.darTiempoEnParqueadero(horaActual);
+                if (nHoras >= maxHoras) {
+                    placaCarro = carroActual.darPlaca();
+                    maxHoras = nHoras;
+                }
+            }
+        }
+        return "El carro con placa " + placaCarro + " el es que está parqueado hace más tiempo. \nCon un total de " + maxHoras + " horas.";
     }
 
     /**
-     * Método de extensión 2.
+     * Informa si hay puestos disponibles en el parqueadero
      *
-     * @return Respuesta 2.
+     * @return estadoParqueadero
      */
     public String metodo2() {
-        return "respuesta 2";
+        String estadoParqueadero = "Hay puestos disponibles.";
+        if (calcularPuestosLibres() == 0) {
+            estadoParqueadero = "El parqueadero está lleno!";
+        }
+        return estadoParqueadero;
     }
 
 }
